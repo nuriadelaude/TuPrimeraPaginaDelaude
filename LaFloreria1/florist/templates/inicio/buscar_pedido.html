@@ -1,0 +1,21 @@
+
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Buscar mi pedido</button>
+</form>
+
+{% if pedidos %}
+    <h2>Pedidos encontrados para '{{ form.cleaned_data.customer_name }}':</h2>
+    <ul class="list-group mt-4">
+        {% for pedido in pedidos %}
+            <li class="list-group-item">
+                Número de Pedido: {{ pedido.id }}<br>
+                Tipo de Flor: {{ pedido.flower_type }}<br>
+                Cantidad: {{ pedido.quantity }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
